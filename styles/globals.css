@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* styles/globals.css */
+html {
+  scroll-behavior: smooth;
+}
+
 /* small custom styles */
 html,
 body,

@@ -6,7 +6,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
-    { name: "Home", href: "#" },
+    { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Programs", href: "#programs" },
     { name: "Projects", href: "#projects" },
@@ -63,6 +63,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
+                onClick={() => setIsOpen(false)}
                 className="block px-3 py-2 rounded-md text-gray-600 hover:bg-emerald-50 hover:text-emerald-600"
               >
                 {link.name}
