@@ -1,4 +1,4 @@
-import { Users } from "lucide-react";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -56,7 +56,7 @@ export default function Hero() {
         <div className="relative">
           <div className="aspect-[4/3] rounded-3xl border border-emerald-100 bg-gradient-to-br from-emerald-100 via-white to-emerald-50 p-1 shadow-inner">
             <div className="h-full w-full rounded-[22px] bg-white grid place-content-center">
-              <div className="flex flex-col items-center text-center p-8">
+              {/* <div className="flex flex-col items-center text-center p-8">
                 <Users className="h-14 w-14" />
                 <p className="mt-4 text-xl font-semibold text-gray-900">
                   Women • Girls • Communities
@@ -65,7 +65,15 @@ export default function Hero() {
                   Replace with real photos (workshops, trainings, VSLA groups,
                   etc.).
                 </p>
-              </div>
+              </div> */}
+              <Image
+                src="/images/hero-main.jpg"
+                alt="WEDOL women empowerment program - women participating in community training"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
           </div>
         </div>

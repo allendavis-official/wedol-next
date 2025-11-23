@@ -1,16 +1,10 @@
+import Image from "next/image";
+import Link from "next/link";
+import newsItems from "../data/newsData";
+
 export default function News() {
-  const posts = [
-    {
-      title: "Community Dialogue in Margibi",
-      date: "Aug 12, 2025",
-      excerpt: "WEDOL facilitated a women-led dialogue on peace and inclusion…",
-    },
-    {
-      title: "VSLA Training for 5 Communities",
-      date: "Jul 3, 2025",
-      excerpt: "35 women completed savings & financial literacy sessions…",
-    },
-  ];
+  // Show only the 6 most recent items
+  const recentPosts = newsItems.slice(0, 6);
 
   return (
     <section id="news" className="py-20 bg-emerald-50">
@@ -22,21 +16,38 @@ export default function News() {
           Latest from WEDOL
         </h2>
 
-        <div className="mt-8 grid sm:grid-cols-2 gap-6">
-          {posts.map((p) => (
+        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {recentPosts.map((p) => (
             <article
-              key={p.title}
-              className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
+              key={p.id}
+              className="rounded-2xl border border-gray-200 bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow"
             >
-              <p className="text-xs font-semibold text-emerald-700">{p.date}</p>
-              <h4 className="mt-1 font-semibold text-gray-900">{p.title}</h4>
-              <p className="mt-2 text-sm text-gray-600">{p.excerpt}</p>
-              <a
-                href="#"
-                className="mt-3 inline-block text-emerald-700 font-semibold"
-              >
-                Read more
-              </a>
+              {/* Image thumbnail */}
+              {p.images && p.images.length > 0 && (
+                <div className="relative h-48 w-full bg-gray-200">
+                  <Image
+                    src={p.images[0]}
+                    alt={p.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
+              )}
+
+              <div className="p-6">
+                <p className="text-xs font-semibold text-emerald-700">
+                  {p.date}
+                </p>
+                <h4 className="mt-1 font-semibold text-gray-900">{p.title}</h4>
+                <p className="mt-2 text-sm text-gray-600">{p.excerpt}</p>
+                <Link
+                  href={`/news/${p.id}`}
+                  className="mt-3 inline-block text-emerald-700 font-semibold hover:text-emerald-800"
+                >
+                  Read more
+                </Link>
+              </div>
             </article>
           ))}
         </div>
